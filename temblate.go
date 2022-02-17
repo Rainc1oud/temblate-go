@@ -8,7 +8,7 @@ import (
 
 //go:generate go run ./internal/cmd/gen.go
 
-var templates = make(MessageTemplates, 0)
+var templates = make(messageTemplates, 0)
 
 func GetMessage(lang, key string, data interface{}) string {
 	if mts, ok := templates[key]; ok {
