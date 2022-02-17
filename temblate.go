@@ -6,12 +6,16 @@ import (
 	"text/template"
 )
 
-//go:generate go run ./cmd/gen.go
+//go:generate go run ../cmd/gen/gen.go ../testtemplates ./messages.go
 
-var templates = make(MessageTemplates, 0)
+var _templates = make(MessageTemplates, 0)
+
+func Init(templates *MessageTemplates) {
+	_templates = *templates
+}
 
 func GetMessage(lang, key string, data interface{}) string {
-	if mts, ok := templates[key]; ok {
+	if mts, ok := _templates[key]; ok {
 		if msg, ok := mts[lang]; ok {
 			return newTemplateWrapErr(key, msg, data)
 		} else if msg, ok := mts["en"]; ok { // try defaulting to English
