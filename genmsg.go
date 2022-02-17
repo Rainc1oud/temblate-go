@@ -21,7 +21,7 @@ package temblate
 import tmblg "github.com/ppenguin/temblate-go"
 
 func init() {
-	tmblg.Init(&%#v)
+	tmblg.InitTemplates(&%#v)
 }
 
 func GetMessage(lang, key string, data interface{}) string{

@@ -10,7 +10,7 @@ import (
 
 var _templates = make(MessageTemplates, 0)
 
-func Init(templates *MessageTemplates) {
+func InitTemplates(templates *MessageTemplates) {
 	_templates = *templates
 }
 
