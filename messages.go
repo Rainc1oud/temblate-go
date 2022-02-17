@@ -5,5 +5,5 @@
 package temblate_go
 
 func init() {
-	templates = messageTemplates{"msg1":LangTemplates{"en":"Just a simple message.", "nl":"Gewoon een simpele mededeling."}, "msg2":LangTemplates{"en":"Your nickname is {{ .Nickname }}!\n"}}
+	templates = MessageTemplates{"msg1":LangTemplates{"en":"Just a simple message.", "nl":"Gewoon een simpele mededeling."}, "msg2":LangTemplates{"en":"Your nickname is {{ .Nickname }}!\n"}}
 }
