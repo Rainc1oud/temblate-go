@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-//go:generate go run ./internal/cmd/gen.go
+//go:generate go run ./cmd/gen.go
 
 var templates = make(messageTemplates, 0)
 
