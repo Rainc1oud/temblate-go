@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	tmbl "github.com/ppenguin/temblate-go"
+	tmbl "github.com/Rainc1oud/temblate-go"
 )
 
 func main() {

@@ -6,12 +6,12 @@ Minimalistic embedded multi-language text template generation for go programs
 
 1. Add the lib to your project:
    ```
-   go get github.com/ppenguin/temblate-go
+   go get github.com/Rainc1oud/temblate-go
    ```
 2. Make a file `temblate/generate.go` with the following content:
    ```go
    package temblate
-   //go:generate go run -mod=mod github.com/ppenguin/temblate-go/cmd/gen ./templates ./messages.go
+   //go:generate go run -mod=mod github.com/Rainc1oud/temblate-go/cmd/gen ./templates ./messages.go
    ```
    and define your templates under `./temblate/templates/` with the file name formatted as `<keyname>.<lang>.gotmpl` (e.g. `mytopic.en.gotmpl`). \
 3. Do
