@@ -14,6 +14,8 @@ Minimalistic embedded multi-language text template generation for go programs
    //go:generate go run -mod=mod github.com/Rainc1oud/temblate-go/cmd/gen ./templates ./messages.go
    ```
    and define your templates under `./temblate/templates/` with the file name formatted as `<keyname>.<lang>.gotmpl` (e.g. `mytopic.en.gotmpl`). \
+   \
+   `<keyname>` **must** match the regex `[.\w_-]*` and `<lang>` **must** be present and match the regex `[a-z]{2,3}`.
 3. Do
    ```
    go generate ./temblate/

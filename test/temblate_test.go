@@ -2,6 +2,7 @@ package temblate
 
 import (
 	"bytes"
+	"strings"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -25,18 +26,70 @@ func TestGetMessage(t *testing.T) {
 		args args
 		want string
 	}{
-		{name: "msg1en", args: args{lang: "en", key: "msg1", data: dat}, want: "Just a simple message."},
-		{name: "msg2en", args: args{lang: "en", key: "msg2", data: dat}, want: `Your nickname is Devvy!
+		{
+			name: "msg1en",
+			args: args{
+				lang: "en",
+				key:  "msg1",
+				data: dat,
+			},
+			want: "Just a simple message.",
+		},
+		{
+			name: "msg2en",
+			args: args{
+				lang: "en",
+				key:  "msg2",
+				data: dat,
+			},
+			want: strings.TrimLeft(`Your nickname is Devvy!
 
 However, we now add some symbols:
 
 Sunnycloud: 🌦
 Rocket: 🚀
 Devil: 😈
-`,
+`, " \t"),
 		},
-		{name: "msg1langnoexist", args: args{lang: "de", key: "msg1", data: dat}, want: "Just a simple message."},
-		{name: "msg1nl", args: args{lang: "nl", key: "msg1", data: dat}, want: "Gewoon een simpele mededeling."},
+		{
+			name: "msg2en.html",
+			args: args{
+				lang: "en",
+				key:  "msg2.html",
+				data: dat,
+			},
+			want: strings.TrimLeft(`<html>
+  <head>
+  </head>
+<body>
+<h3>Your nickname is Devvy!</h3>
+<br/>
+However, we now add some symbols:
+<br/>
+Sunnycloud: 🌦<br/>
+Rocket: 🚀<br/>
+Devil: 😈<br/>
+</body>
+</html>`, " \t"),
+		},
+		{
+			name: "msg1langnoexist",
+			args: args{
+				lang: "de",
+				key:  "msg1",
+				data: dat,
+			},
+			want: "Just a simple message.",
+		},
+		{
+			name: "msg1nl",
+			args: args{
+				lang: "nl",
+				key:  "msg1",
+				data: dat,
+			},
+			want: "Gewoon een simpele mededeling.",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -61,7 +114,7 @@ func TestFileEnc(t *testing.T) {
 	if err != nil {
 		t.Errorf("ERROR reading file: %q", fn)
 	}
-	if !bytes.Equal([]byte(msg), msgr) {
+	if !bytes.Equal([]byte(msg), []byte(strings.TrimLeft(string(msgr), " \t"))) {
 		t.Errorf("ERROR: conversion not identical: %q != %q", msg, msgr)
 	}
 	_ = os.Remove(fn)

@@ -38,7 +38,7 @@ func Generate(tgtfile, tmpldir string) error {
 func readTemplates(dir string) *MessageTemplates {
 	// tpls := new(temblate.LangTemplates)
 	tpls := make(MessageTemplates)
-	re, err := regexp.Compile(`(\w*)\.([a-z]{2,3})\.gotmpl`)
+	re, err := regexp.Compile(`([.\w_-]*)\.([a-z]{2,3})\.gotmpl`)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "FATAL: %s", err.Error())
 		return &tpls
